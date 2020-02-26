@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<example3>
+<book id="bk1">
+<authors>
+<firstname>Cecilia</firstname>
+<lastname>Ionescu</lastname>
+</authors>
+<authors>
+<firstname>Dana</firstname>
+<lastname>Danelescu</lastname>
+<wrote_before>
+<title>De ce plang salciile</title>
+</wrote_before>
+<wrote_before>
+<title>Echipa perfecta. Ghidul spre fericire</title>
+</wrote_before>
+<wrote_before>
+<title>Echipa perfecta2. Mai bine nu se poate</title>
+</wrote_before>
+</authors>
+<authors>
+<firstname>Ioana</firstname>
+<lastname>Florescu</lastname>
+</authors>
+<editor>
+<firstname>Ioana</firstname>
+<lastname>Florescu</lastname>
+</editor>
+<title>Java training plan</title>
+<genre>Computer</genre>
+<price unit="lei">30.99</price>
+<price unit="euro">10.99</price>
+<price unit="GBP">8.99</price>
+<publish_date>2010-10-01</publish_date>
+<description>Take first steps to become a professional in Java!</description>
+</book>
+<book id="bk2">
+<author>Florian Muntean</author>
+<title>De ce nu canta cucii</title>
+<genre>SF</genre>
+<price unit="euro">10.95</price>
+<publish_date>2019-12-10</publish_date>
+</book>
+<book id="bk3">
+<author>Maria Marinescu</author>
+<title>Cand te-am vazut intaia oara</title>
+<genre>Romance</genre>
+<price unit="GBP">4.00</price>
+<publish_date>2018-06-12</publish_date>
+</book>
+<separam_putin>
+<separam_mai_mult>Mai mult</separam_mai_mult>
+</separam_putin>
+<empty_tag haveNoValues="value1" stillNoValues="value2"/>
+<book id="bk4">
+<author>Darian Muntean</author>
+<title>De ce nu poti zbura</title>
+<genre>SF</genre>
+<price unit="euro">12.95</price>
+<publish_date>2017-12-10</publish_date>
+</book>
+<book id="bk5">
+<author>Maria Popescu</author>
+<title>Cand e gata, e gata</title>
+<genre>Romance</genre>
+<price unit="GBP">8.00</price>
+<publish_date>2018-02-09</publish_date>
+</book>
+</example3>
+<bookNotAvail id="bk6">
+<author>Maria Danescu</author>
+<title>Am fost, sunt, voi mai fi</title>
+<genre>Action</genre>
+<price unit="GBP">3.00</price>
+<publish_date>2019-10-09</publish_date>
+</bookNotAvail>

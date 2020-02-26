@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- Acesta este un fisier de test -->
+<example2>
+<book id="bk1">
+<authors>
+<firstname>Cecilia</firstname>
+<lastname>Ionescu</lastname>
+</authors>
+<authors>
+<firstname>Dana</firstname>
+<lastname>Danelescu</lastname>
+</authors>
+<authors>
+<firstname>Ioana</firstname>
+<lastname>Florescu</lastname>
+</authors>
+<title>Java training plan</title>
+<genre>Computer</genre>
+<price unit="lei">30.99</price>
+<publish_date>2010-10-01</publish_date>
+<description>Take first steps to become a professional in Java!</description>
+</book>
+<book id="bk2">
+<author>Florian Muntean</author>
+<title>De ce nu canta cucii</title>
+<genre>SF</genre>
+<price unit="euro">10.95</price>
+<publish_date>2019-12-10</publish_date>
+</book>
+<book id="bk3">
+<author>Maria Marinescu</author>
+<title>Cand te-am vazut intaia oara</title>
+<genre>Romance</genre>
+<price unit="GBP">4.00</price>
+<publish_date>2018-06-12</publish_date>
+</book>
+</example2>
+<empty_tag haveNoValues="value1" stillNoValues="value2"/>

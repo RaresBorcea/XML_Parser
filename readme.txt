@@ -1,0 +1,52 @@
+Borcea Rareș Ioan; Grupa 334CC; 2019-2020
+============ Tema Flex LFA ==============
+
+(!) Explicațiile din README trebuie coroborate comentariilor ce însoțesc codul,
+pentru a putea înțelege în totalitate implementarea.
+
+1. Platforma sub care s-a realizat programul
+Ubuntu 18.04
+
+2. Descrierea generală
+S-a încercat ca aspectele ce ţin strict de elementele specifice analizei în Flex
+să fie simplificate şi să se evite aproape în totalitate utilizarea C pentru 
+PROCESAREA textului din fişierul de intrare (dat ca unic parametru programului în
+CLI), excepţie fiind adăugarea unor terminatori de şir, nu foarte diferită de
+adăugarea de paranteze prezentată într-un exemplu din curs.
+S-a separat pe cazuri identificarea:
+- prolog-ului specific XML
+- comentariilor
+- tag-urilor
+În cazul primelor două, s-au definit condiţii de start/"stări" diferite pentru
+a putea sări în întregime conţinutul acestora.
+Pentru tag-uri, acestea s-au separat în continuare în:
+- tag-uri cu atribute
+- tag-uri simple, urmate de newline
+- tag-uri urmate de valoare directă (tag : value) - acestea sunt identificate
+separat, pe rând, valoarea de după ':' fiind completată în a doua regulă
+- tag-uri de închidere
+Pentru tag-urile cu atribute, mai exact pentru adăugarea atributelor precedate
+de caracterele necesare ('_', '__text'etc.) s-a mai definit o condiţie de start
+(ATTRIBUTES), în care sunt analizate pe rând atributele, mai exact denumirea şi
+valoarea lor, închiderea tag-ului cu atribute şi revenirea în INITIAL.
+
+3. Problemele apărute şi soluţiile implementate
+Problemele au fost generate de necesitatea identificării listelor şi marcarea
+corespunzătoare a indecşilor şi a indentării în fişierul de ieşire. S-a recurs la
+următoarea soluţie: reţinerea liniilor după analiza efectuată de Flex într-o
+listă înlănţuită (toPrint). Astfel, în momentul identificării unui al doilea 
+tag de acelaşi tip, deci a existenţei unei liste, s-a putut efectua eficient
+inserarea între rânduri a indexului ZERO corespunzător primului element. 
+Evident,a fost necesară şi reţinerea şi, în acest caz, actualizarea numărului de 
+tab-uri utilizate pentru fiecare linie (toPrint e un struct format din linia de 
+listat şi numărul de tab-uri din indentare). 
+Restul elementelor din listă au putut fi adăugate simplu în continuare, menţinându-se 
+în permanenţă denumirea tag-urilor anterioare deschise, respectiv închise.
+Pentru a cunoaşte poziţia de start a fiecărui tip de tag ce ar putea reprezenta
+începutul unei liste, cât şi indexul curent utilizat în fiecare listă, s-a
+utilizat un hashmap, elementele fiind structuri ce cuprind proprietăţile menţionate
+anterior, pentru fiecare tag deschis. La închiderea definitivă a unei liste,
+elementul este eliminat din hashmap. Toate aceste optimizări au permis structuri
+variate de liste, liste în liste în liste ş.a. sau chiar deschiderea unei liste
+de acelaşi tip după ce a fost întreruptă de un tag de tip diferit - toate
+situaţiile fiind evidenţiate în exemplul 'input3.xml'.
