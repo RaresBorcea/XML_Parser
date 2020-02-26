@@ -1,14 +1,12 @@
-# Borcea Rares Ioan Grupa 334CC
-
 .PHONY: build clean
 
-build: tema
+build: parser
 
-tema: lex.yy.c
-	g++ lex.yy.c -o tema
+parser: lex.yy.c
+	g++ lex.yy.c -o parser
 
-lex.yy.c: tema.l
-	lex tema.l
+lex.yy.c: parser.l
+	lex parser.l
 
 clean:
-	rm -rf tema lex.yy.c output.txt
+	rm -rf parser lex.yy.c output.txt
