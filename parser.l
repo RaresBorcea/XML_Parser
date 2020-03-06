@@ -1,4 +1,4 @@
-/* Borcea Rares Ioan Grupa 334CC */
+/* Borcea Rares Ioan */
 
 %{
 #include <iostream>
@@ -162,9 +162,9 @@ value [^\n\"><]*
 								// Increase depth and add attributes
 								depth++;
 								BEGIN(ATTRIBUTES);
-								}
+							}
 
-			"<"{tag}">"/"\n"	{
+			"<"{tag}">"/"\n"		{
 								// Tag without attributes
 								// Increase depth
 								depth++;
@@ -175,9 +175,9 @@ value [^\n\"><]*
 								tagName[yyleng - 2] = '\0';
 								string tagToCheck(tagName);
 								addTag(tagToCheck);
-								}
+							}
 
-			"<"{tag}">"/{value}	{
+			"<"{tag}">"/{value}		{
 								// Tag with direct value
 								// Check if there was a previous list
 								if (!prevClosedTag.empty()) {
@@ -203,7 +203,7 @@ value [^\n\"><]*
 								// Mark as previously opened tag
 								prevOpenedTag = tagWithValue;
 								tagWithValue = tagWithValue + " : ";
-								}
+							}
 
 			{value}				{
 								// Direct value of previously opened tag
@@ -215,9 +215,9 @@ value [^\n\"><]*
 								valueToAdd.indent = depth;
 								toPrint.push_back(valueToAdd);
 								listPos++;
-								}
+							}
 			
-			"</"{tag}">"		{
+			"</"{tag}">"			{
 								// Closing tag which could have been a list
 								// Check if it was a list
 								if (!prevClosedTag.empty()) {
@@ -239,7 +239,7 @@ value [^\n\"><]*
 								strcpy(tagName, yytext + 2);
 								tagName[yyleng - 3] = '\0';
 								prevClosedTag = tagName;
-								}
+							}
 
 			"/>"				{
 								// Closing tag which couldn't have been a list
@@ -248,28 +248,28 @@ value [^\n\"><]*
 
 								// Mark as prevClosedTag, based on prevOpenedTag
 								prevClosedTag = prevOpenedTag;
-								}
+							}
 
 			\n					// Eat newlines
-			}
+	    }
 
 <XML_PROLOG>{
 			"?>"|"?>\n"			BEGIN(INITIAL); 
 			.|\n				// Eat prolog in chunks
-			}
+	    }
 
 <IN_COMMENT>{
 			"-->"|"-->\n"		BEGIN(INITIAL); 
 			.|\n				// Eat comment in chunks
-			}
+	    }
 
 <ATTRIBUTES>{
 			{tag}/"="			{
 								// Attribute, store name preceded by '_'
 								attrib = "_" + string(yytext) + " : ";
-								}
+							}
 
-			"=\""{attribute}	{
+			"=\""{attribute}		{
 								// Attribute value, complete line and add to toPrint
 								string toAdd = attrib;
 								toAdd = toAdd + string(yytext + 2);
@@ -278,15 +278,15 @@ value [^\n\"><]*
 								attribToAdd.indent = depth;
 								toPrint.push_back(attribToAdd);
 								listPos++;
-								}
+							}
 
 			"\">"				{
 								// End of attributes
 								depth -= 1;
 								BEGIN(INITIAL);	
-								}
+							}
 
-			"\">"{value}		{
+			"\">"{value}			{
 								// Attribute, followed by direct value
 								// Precede by '__text' and add to toPrint strings list
 								string toAdd("__text : ");
@@ -296,11 +296,11 @@ value [^\n\"><]*
 								textToAdd.indent = depth;
 								toPrint.push_back(textToAdd);
 								listPos++;
-								}
+							}
 
 			"\" "				// Eat space between attributes
 
-			"</"{tag}">"		{
+			"</"{tag}">"			{
 								// Closing of tag with attributes
 								// Mark as prevClosedTag
 								char *tagName = (char*)malloc(sizeof(char) * (yyleng - 2));
@@ -312,7 +312,7 @@ value [^\n\"><]*
 								depth -= 2;
 
 								BEGIN(INITIAL);	
-								}
+							}
 
 			"\"/>"				{
 								// Closing of empty tag
@@ -323,8 +323,8 @@ value [^\n\"><]*
 								depth -= 2;
 
 								BEGIN(INITIAL);	
-								}						
-			}
+							}						
+	    }
 
 %%
 
